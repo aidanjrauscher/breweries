@@ -35,6 +35,7 @@ export default function App() {
   return (
     <div>
       <div>
+        <h1 className="text-3xl font-bold underline">Breweries</h1>
       </div>
       {breweries && breweries.map((brewery) => {
         if (brewery.website_url) {
