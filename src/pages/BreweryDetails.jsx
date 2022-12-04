@@ -9,9 +9,15 @@ const BreweriesDetails = ()=>{
 
   useEffect(() => {
     const fetchBrewery = async () => {
-      const response = await fetch(`https://api.openbrewerydb.org/breweries/${breweryID}`)
-      const json = await response.json()
-      setBrewery(json)
+        const response = await fetch(`https://api.openbrewerydb.org/breweries/${breweryID}`)
+        const status = response.status
+        if(status == 200){
+          const json = await response.json()
+          setBrewery(json)
+        }
+        else{
+          setBrewery({msg: `Cannot find brewery with id: ${breweryID}`})
+        }
     }
 
     fetchBrewery()
