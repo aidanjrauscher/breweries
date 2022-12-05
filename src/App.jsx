@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import BreweriesList from './pages/BreweriesList'
 import BreweryDetails from './pages/BreweryDetails'
+import NotFound from './pages/404'
 
 const App = ()=>{
   return(
@@ -14,6 +15,7 @@ const App = ()=>{
       <Routes>
         <Route path="/" element={<BreweriesList />} />
         <Route path="/brewery/:breweryID" element={<BreweryDetails/>} />
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
     </Router>
   )

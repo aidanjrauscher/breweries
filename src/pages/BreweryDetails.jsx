@@ -1,7 +1,10 @@
 import React from "react";
 import { useState, useEffect } from 'react'
-import BreweriesDetailsItem from "../components/BreweryDetailsItem";
 import {useParams} from "react-router-dom"
+
+import BreweriesDetailsItem from "../components/BreweryDetailsItem";
+import BreweryMap from "../components/BreweryMap";
+
 
 const BreweriesDetails = ()=>{
   const {breweryID} = useParams();
@@ -22,9 +25,11 @@ const BreweriesDetails = ()=>{
 
     fetchBrewery()
   }, [])
-
   return(
-    <BreweriesDetailsItem brewery={brewery}/>
+    <div id="BreweryDetails" className="grid grid-cols-2 gap-20 w-screen content-center">
+      <div><BreweriesDetailsItem brewery={brewery}/></div>
+      {brewery.id && <BreweryMap brewery={brewery}/>}
+    </div>
   )
 }
 

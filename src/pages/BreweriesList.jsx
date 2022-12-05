@@ -36,10 +36,12 @@ const BreweriesList = ()=>{
       <div>
         <h1 className="text-3xl font-bold underline">Breweries</h1>
       </div>
-      {breweries && breweries.map((brewery) => {
-        return (<BreweriesListItem key={brewery.id} brewery={brewery}/>)
-      })
-      }
+      <div className='flex flex-col space-y-5'>
+        {breweries && breweries.map((brewery) => {
+          return (<BreweriesListItem key={brewery.id} brewery={brewery}/>)
+        })
+        }
+      </div>
       <div>
         <button onClick={prevPage}>Previous</button>
         <button onClick={nextPage}>Next</button>
