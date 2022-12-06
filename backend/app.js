@@ -8,7 +8,7 @@ const app = express()
 const port = process.env.PORT || 3000
 
 app.use(cors({
-  origin: "https://rsm.aidanjrauscher.com"
+  origin: process.env.ORIGIN_URL
 }
 ))
 
