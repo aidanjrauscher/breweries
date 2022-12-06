@@ -7,7 +7,7 @@ const BreweriesList = ()=>{
 
   useEffect(() => {
     const fetchBreweries = async () => {
-      const response = await fetch(`https://rsmapi.aidanjrauscher.com/api/breweries?page=${breweryPage}`)
+      const response = await fetch(`https://api.openbrewerydb.org/breweries?page=${breweryPage}`)
       const json = await response.json()
       if (json == []) {
         setBreweryPage(breweryPage - 1)

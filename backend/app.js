@@ -14,6 +14,10 @@ app.use(cors({
 
 app.use("/api/breweries", breweriesRouter)
 
+app.get("*", (req, res)=>{
+  res.sendFile(path.join(__dirname, "../client/index.html"))
+})
+
 const startServer = async ()=>{
   try{
     await dbConnect(process.env.MONGODB_URL)
