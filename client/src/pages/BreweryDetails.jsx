@@ -12,7 +12,7 @@ const BreweriesDetails = ()=>{
 
   useEffect(() => {
     const fetchBrewery = async () => {
-        const response = await fetch(`https://rsmapi.aidanjrauscher.com/api/breweries/${breweryID}`)
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/breweries/${breweryID}`)
         const status = response.status
         if(status == 200){
           const json = await response.json()

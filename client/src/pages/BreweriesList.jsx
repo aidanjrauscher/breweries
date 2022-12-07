@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
 import BreweriesListItem from '../components/BreweriesListItem';
+import TextField from '@mui/material/TextField';
 
 const BreweriesList = ()=>{
   const [breweries, setBreweries] = useState([]);
   const [breweryPage, setBreweryPage] = useState(1)
+  const [brewerySearch, setBrewerySearch] = useState("")
 
   useEffect(() => {
     const fetchBreweries = async () => {
-      const response = await fetch(`https://rsmapi.aidanjrauscher.com/api/breweries?page=${breweryPage}`)
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/breweries?query=${brewerySearch}&page=${breweryPage}`)
       const json = await response.json()
       if (json == []) {
         setBreweryPage(breweryPage - 1)
@@ -16,7 +18,7 @@ const BreweriesList = ()=>{
     }
 
     fetchBreweries()
-  }, [breweryPage])
+  }, [breweryPage, brewerySearch])
 
   const nextPage = () => {
     setBreweryPage(breweryPage + 1)
@@ -31,11 +33,25 @@ const BreweriesList = ()=>{
     }
   }
 
+  const searchBreweries = (e) =>{
+    setBrewerySearch(e.target.value)
+  }
+
   return (
     <div>
       <div>
         <h1 className="text-3xl font-bold underline">Breweries</h1>
+        <br></br>
+        <TextField
+          id="brewery-search"
+          label="Search Beweries"
+          type="search"
+          variant="filled"
+          value={brewerySearch}
+          onChange={searchBreweries}
+        />
       </div>
+      <br></br>
       <div className='flex flex-col space-y-5'>
         {breweries && breweries.map((brewery) => {
           return (<BreweriesListItem key={brewery.id} brewery={brewery}/>)
