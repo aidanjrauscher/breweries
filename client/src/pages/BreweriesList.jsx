@@ -1,15 +1,21 @@
 import { useState, useEffect } from 'react'
 import BreweriesListItem from '../components/BreweriesListItem';
-import TextField from '@mui/material/TextField';
+import BreweriesListInputs from '../components/BreweriesListInputs';
+
 
 const BreweriesList = ()=>{
   const [breweries, setBreweries] = useState([]);
   const [breweryPage, setBreweryPage] = useState(1)
-  const [brewerySearch, setBrewerySearch] = useState("")
+  const [breweryParams, setBreweryParams] = useState({
+    search: "",
+    state: "none",
+    type: "none",
+    us_only: false
+  })
 
   useEffect(() => {
     const fetchBreweries = async () => {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/breweries?query=${brewerySearch}&page=${breweryPage}`)
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/breweries?page=${breweryPage}&query=${breweryParams.search}&type=${breweryParams.type}&state=${breweryParams.state}&us_only=${breweryParams.us_only}`)
       const json = await response.json()
       if (json == []) {
         setBreweryPage(breweryPage - 1)
@@ -18,7 +24,8 @@ const BreweriesList = ()=>{
     }
 
     fetchBreweries()
-  }, [breweryPage, brewerySearch])
+  }, [breweryPage, breweryParams])
+  
 
   const nextPage = () => {
     setBreweryPage(breweryPage + 1)
@@ -33,24 +40,13 @@ const BreweriesList = ()=>{
     }
   }
 
-  const searchBreweries = (e) =>{
-    setBrewerySearch(e.target.value)
-  }
-
   return (
     <div>
       <div>
         <h1 className="text-3xl font-bold underline">Breweries</h1>
-        <br></br>
-        <TextField
-          id="brewery-search"
-          label="Search Beweries"
-          type="search"
-          variant="filled"
-          value={brewerySearch}
-          onChange={searchBreweries}
-        />
       </div>
+      <br></br>
+      <BreweriesListInputs breweryParams={breweryParams} setBreweryParams={setBreweryParams}/>
       <br></br>
       <div className='flex flex-col space-y-5'>
         {breweries && breweries.map((brewery) => {

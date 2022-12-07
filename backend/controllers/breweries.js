@@ -1,10 +1,20 @@
 const Brewery = require("../models/Brewery")
 
 const getBreweryList = async(req,res)=>{
-  const {page, per_page, query} = req.query
+  const {page, per_page, query, type, state, us_only} = req.query
   const breweryQuery = {}
   if(query){
     breweryQuery.name = {$regex: query, $options: "i"}
+  }
+  if(type && type!="none"){
+    breweryQuery.brewery_type = type
+  }
+  if(state && state!="none"){
+    const formattedState = state.replaceAll("_", " ")
+    breweryQuery.state = {$regex: formattedState, $options: "i"}
+  }
+  if(us_only && us_only==="true"){
+     breweryQuery.country = "United States"
   }
   let breweryResult =  Brewery.find(breweryQuery).select(['-_id','-__v']).sort("name")
 
