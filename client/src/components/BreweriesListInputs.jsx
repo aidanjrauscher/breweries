@@ -119,7 +119,6 @@ const BreweriesListInputs = ({breweryParams, setBreweryParams})=>{
         />
         <TextField
           select
-          labelId="brewery-type-label"
           id="brewery-type"
           value={breweryParams.type}
           label="Brewery Type"
@@ -127,13 +126,12 @@ const BreweriesListInputs = ({breweryParams, setBreweryParams})=>{
           sx={{m: 2, width: 160}}
         >
           {Object.keys(breweryTypes).map((type)=>(
-            <MenuItem value={breweryTypes[type]}>{type}</MenuItem>
+            <MenuItem key={breweryTypes[type]} value={breweryTypes[type]}>{type}</MenuItem>
           ))
           }
         </TextField>
         <TextField
           select
-          labelId="brewery-state-label"
           id="brewery-state"
           value={breweryParams.state}
           label="Brewery State"
@@ -141,7 +139,7 @@ const BreweriesListInputs = ({breweryParams, setBreweryParams})=>{
           sx={{m: 2, width: 160}}
         >
           {Object.keys(states).map((state)=>(
-            <MenuItem value={states[state]}>{state.replaceAll("_", " ")}</MenuItem>
+            <MenuItem key={states[state]} value={states[state]}>{state.replaceAll("_", " ")}</MenuItem>
           ))}
         </TextField>
         <FormControlLabel control={
