@@ -7,7 +7,7 @@ import {
   Checkbox
 } from '@mui/material';
 
-const BreweriesListInputs = ({breweryParams, setBreweryParams})=>{
+const BreweriesListInputs = ({breweryParams, setBreweryParams, styles})=>{
   const searchBreweries = (e) =>{
     setBreweryParams({
       ...breweryParams,
@@ -106,7 +106,7 @@ const BreweriesListInputs = ({breweryParams, setBreweryParams})=>{
 
   return(
     <div className="flex justify-center"> 
-      <FormGroup row={true}>       
+      <FormGroup row={true}>  
         <TextField
           hiddenLabel
           id="brewery-search"
@@ -115,7 +115,8 @@ const BreweriesListInputs = ({breweryParams, setBreweryParams})=>{
           variant="filled"
           value={breweryParams.search}
           onChange={searchBreweries}
-          sx={{m: 2}}
+          sx={{m: 2, color: '#efe9f4'}}
+          inputProps={{ style: { color: "white" } }}
         />
         <TextField
           select
@@ -123,7 +124,8 @@ const BreweriesListInputs = ({breweryParams, setBreweryParams})=>{
           value={breweryParams.type}
           label="Brewery Type"
           onChange={filterBreweryType}
-          sx={{m: 2, width: 160}}
+          sx={{m: 2, width: 160, color: '#efe9f4'}}
+          inputProps={{ style: { color: "white" } }}
         >
           {Object.keys(breweryTypes).map((type)=>(
             <MenuItem key={breweryTypes[type]} value={breweryTypes[type]}>{type}</MenuItem>
@@ -137,13 +139,19 @@ const BreweriesListInputs = ({breweryParams, setBreweryParams})=>{
           label="Brewery State"
           onChange={filterBreweryState}
           sx={{m: 2, width: 160}}
+          inputProps={{ style: { color: "white" } }}
         >
           {Object.keys(states).map((state)=>(
             <MenuItem key={states[state]} value={states[state]}>{state.replaceAll("_", " ")}</MenuItem>
           ))}
         </TextField>
         <FormControlLabel control={
-          <Checkbox  />
+          <Checkbox sx={{
+            color: '#efe9f4',
+            '&.Mui-checked': {
+              color: '#efe9f4',
+            },
+          }} />
         } 
         label="Only Show US Breweries" 
         labelPlacement="start"

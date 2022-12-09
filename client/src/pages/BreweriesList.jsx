@@ -43,20 +43,22 @@ const BreweriesList = ()=>{
   return (
     <div>
       <div>
-        <h1 className="text-3xl font-bold underline">Breweries</h1>
+        <h1 className="text-4xl font-bold" >Breweries</h1>
       </div>
       <br></br>
       <BreweriesListInputs breweryParams={breweryParams} setBreweryParams={setBreweryParams}/>
       <br></br>
-      <div className='flex flex-col space-y-5'>
+      {/* <div className='flex flex-wrap space-x-4 space-y-4 justify-center'> */}
+      <div className='grid gap-4 auto-cols-auto sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
         {breweries && breweries.map((brewery) => {
           return (<BreweriesListItem key={brewery.id} brewery={brewery}/>)
         })
         }
       </div>
+      <br></br>
       <div>
-        <button onClick={prevPage}>Previous</button>
-        <button onClick={nextPage}>Next</button>
+        <button className="mx-2" onClick={prevPage}>Previous</button>
+        <button className="mx-2" onClick={nextPage}>Next</button>
       </div>
     </div>
   )

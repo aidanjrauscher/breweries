@@ -6,7 +6,15 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+      'independence': '#484d6d',
+      'forest': '#57a773',
+      'magnolia': '#efe9f4',
+      'cyan': '#08b2e3',
+      'fire': '#ee6352'
+      },
+    },
   },
   plugins: [],
 }
