@@ -26,9 +26,12 @@ const BreweriesDetails = ()=>{
     fetchBrewery()
   }, [])
   return(
-    <div id="BreweryDetails" className="grid grid-cols-2 gap-20 w-100% content-center">
-      <div><BreweriesDetailsItem brewery={brewery}/></div>
-      {brewery.id && <BreweryMap brewery={brewery}/>}
+    <div>
+      <h1 className="text-3xl">{brewery.name}</h1>
+      <div id="BreweryDetails" className="grid sm:grid-cols-1 md:grid-cols2 gap-20 w-100%">
+        <div><BreweriesDetailsItem brewery={brewery}/></div>
+        {brewery.id && <BreweryMap brewery={brewery}/>}
+      </div>
     </div>
   )
 }

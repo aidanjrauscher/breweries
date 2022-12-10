@@ -48,13 +48,15 @@ const BreweriesList = ()=>{
       <br></br>
       <BreweriesListInputs breweryParams={breweryParams} setBreweryParams={setBreweryParams}/>
       <br></br>
-      {/* <div className='flex flex-wrap space-x-4 space-y-4 justify-center'> */}
-      <div className='grid gap-4 auto-cols-auto sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+      <div className='grid gap-4 auto-cols-auto sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5'>
         {breweries && breweries.map((brewery) => {
           return (<BreweriesListItem key={brewery.id} brewery={brewery}/>)
         })
         }
       </div>
+      {breweries && breweries.length<1 &&
+        <h2 className="text-forest font-semibold text-xl p-16">No Breweries Found</h2>
+      }
       <br></br>
       <div>
         <button className="mx-2" onClick={prevPage}>Previous</button>

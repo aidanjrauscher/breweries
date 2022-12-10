@@ -115,8 +115,20 @@ const BreweriesListInputs = ({breweryParams, setBreweryParams, styles})=>{
           variant="filled"
           value={breweryParams.search}
           onChange={searchBreweries}
-          sx={{m: 2, color: '#efe9f4'}}
-          inputProps={{ style: { color: "white" } }}
+          sx={{m: 2, 
+            input: {
+              color: '#efe9f4',
+              borderBottom: "2px solid #efe9f4",
+            },
+            '&.MuiTextField-root': {
+                color: '#efe9f4'
+            },
+            '& .MuiFilledInput-underline':{
+              color: "#efe9f4",
+              borderColor: '#efe9f4',
+            },
+          }}
+          
         />
         <TextField
           select
@@ -124,8 +136,12 @@ const BreweriesListInputs = ({breweryParams, setBreweryParams, styles})=>{
           value={breweryParams.type}
           label="Brewery Type"
           onChange={filterBreweryType}
-          sx={{m: 2, width: 160, color: '#efe9f4'}}
-          inputProps={{ style: { color: "white" } }}
+          sx={{m: 2, width: 160,  
+            '& .MuiSelect-select, .MuiSelect-icon, .MuiOutlinedInput-notchedOutline, .MuiFormLabel-root, .MuiOutlinedInput-notchedOutline': {
+              color: '#efe9f4',
+              borderColor: '#efe9f4'
+            },
+          }}
         >
           {Object.keys(breweryTypes).map((type)=>(
             <MenuItem key={breweryTypes[type]} value={breweryTypes[type]}>{type}</MenuItem>
@@ -138,7 +154,11 @@ const BreweriesListInputs = ({breweryParams, setBreweryParams, styles})=>{
           value={breweryParams.state}
           label="Brewery State"
           onChange={filterBreweryState}
-          sx={{m: 2, width: 160}}
+          sx={{m: 2, width: 160,
+            '& .MuiSelect-select, .MuiSelect-icon, .MuiOutlinedInput-notchedOutline, .MuiFormLabel-root, .MuiOutlinedInput-notchedOutline': {
+              color: '#efe9f4',
+              borderColor: '#efe9f4'
+            },}}
           inputProps={{ style: { color: "white" } }}
         >
           {Object.keys(states).map((state)=>(
