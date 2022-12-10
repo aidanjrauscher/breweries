@@ -18,7 +18,7 @@ const BreweryMap = ({brewery})=>{
     zoom: 12
   }
   return(
-    <div style={{ height: '60vh', width: '80%', borderRadius: '2vh', overflow: "hidden" }}>
+    <div style={{ height: '70vh', width: '100%', borderRadius: '2vh', overflow: "hidden" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyClN2ty8d0FZVJ_Vsw0g2TeoEOS77xLJVY" }}
         defaultCenter={mapInfo.center}
