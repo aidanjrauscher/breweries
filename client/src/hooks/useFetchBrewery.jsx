@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useFetchBrewery = (breweryID)=>{
+const useFetchBrewery = (breweryID, setLoading)=>{
   const [brewery, setBrewery] = useState({})
   const url = `${import.meta.env.VITE_BACKEND_URL}/api/breweries/${breweryID}`
 
@@ -15,6 +15,7 @@ const useFetchBrewery = (breweryID)=>{
       else{
         setBrewery({msg: `Cannot find brewery with id: ${breweryID}`})
       }
+      setLoading(false)
     }
 
     fetchBrewery()

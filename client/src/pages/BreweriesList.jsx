@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import  useFetchBreweriesList from "../hooks/useFetchBreweriesList"
 import BreweriesListItem from '../components/BreweriesListItem';
 import BreweriesListInputs from '../components/BreweriesListInputs';
@@ -46,8 +46,7 @@ const BreweriesList = ()=>{
       {breweries && breweries.length<1 &&
         <h2 className="text-forest font-semibold text-xl p-16">No Breweries Found</h2>
       }
-      <br></br>
-      <div>
+      <div className="py-8">
         <button className="mx-2" onClick={prevPage}>Previous</button>
         <button className="mx-2" onClick={nextPage}>Next</button>
       </div>
