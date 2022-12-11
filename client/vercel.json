@@ -1,5 +1,5 @@
 {
   "rewrites": [
-    { "source": "/breweries/(.*)", "destination": "/index.html" }
+    { "source": "/brewery/(.*)", "destination": "/index.html" }
   ]
 }
