@@ -1,31 +1,14 @@
 import React from "react";
 import { useState, useEffect } from 'react'
 import {useParams, Link} from "react-router-dom"
-
-
+import useFetchBrewery from "../hooks/useFetchBrewery"
 import BreweriesDetailsItem from "../components/BreweryDetailsItem";
 import BreweryMap from "../components/BreweryMap";
 
 
 const BreweriesDetails = ()=>{
   const {breweryID} = useParams();
-  const [brewery, setBrewery] = useState({});
-
-  useEffect(() => {
-    const fetchBrewery = async () => {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/breweries/${breweryID}`)
-        const status = response.status
-        if(status == 200){
-          const json = await response.json()
-          setBrewery(json)
-        }
-        else{
-          setBrewery({msg: `Cannot find brewery with id: ${breweryID}`})
-        }
-    }
-
-    fetchBrewery()
-  }, [])
+  const brewery = useFetchBrewery(breweryID)
 
   return(
     <div>

@@ -7,12 +7,13 @@ import {
   Checkbox
 } from '@mui/material';
 
-const BreweriesListInputs = ({breweryParams, setBreweryParams, styles})=>{
+const BreweriesListInputs = ({breweryParams, setBreweryParams, setBreweryPage, styles})=>{
   const searchBreweries = (e) =>{
     setBreweryParams({
       ...breweryParams,
       search: e.target.value,
     })
+    setBreweryPage(1)
   }
 
   const filterBreweryType = (e)=>{

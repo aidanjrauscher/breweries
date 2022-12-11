@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
+import  useFetchBreweriesList from "../hooks/useFetchBreweriesList"
 import BreweriesListItem from '../components/BreweriesListItem';
 import BreweriesListInputs from '../components/BreweriesListInputs';
 
 
 const BreweriesList = ()=>{
-  const [breweries, setBreweries] = useState([]);
   const [breweryPage, setBreweryPage] = useState(1)
   const [breweryParams, setBreweryParams] = useState({
     search: "",
@@ -13,19 +13,8 @@ const BreweriesList = ()=>{
     us_only: false
   })
 
-  useEffect(() => {
-    const fetchBreweries = async () => {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/breweries?page=${breweryPage}&query=${breweryParams.search}&type=${breweryParams.type}&state=${breweryParams.state}&us_only=${breweryParams.us_only}`)
-      const json = await response.json()
-      if (json == []) {
-        setBreweryPage(breweryPage - 1)
-      }
-      setBreweries(json)
-    }
 
-    fetchBreweries()
-  }, [breweryPage, breweryParams])
-  
+  const breweries = useFetchBreweriesList(breweryParams, breweryPage, setBreweryPage)
 
   const nextPage = () => {
     setBreweryPage(breweryPage + 1)
@@ -46,7 +35,7 @@ const BreweriesList = ()=>{
         <h1 className="text-4xl font-bold" >Breweries</h1>
       </div>
       <br></br>
-      <BreweriesListInputs breweryParams={breweryParams} setBreweryParams={setBreweryParams}/>
+      <BreweriesListInputs breweryParams={breweryParams} setBreweryParams={setBreweryParams}   setBreweryPage={setBreweryPage}/>
       <br></br>
       <div className='grid gap-4 auto-cols-auto sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5'>
         {breweries && breweries.map((brewery) => {

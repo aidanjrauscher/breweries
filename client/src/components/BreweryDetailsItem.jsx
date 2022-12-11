@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const BreweriesDetailsItem = ({brewery})=>{
   return (
-    <div className="bg-forest border border-magnolia border-4 w-3/5 p-16 rounded-2xl ">
+    <div className="bg-forest border border-magnolia border-4 w-4/6 py-16 rounded-2xl ">
       {brewery.msg && <h1>{brewery.msg}</h1>}
       
       <h3 className="text-2xl font-semibold">{brewery.brewery_type} Brewery</h3>
