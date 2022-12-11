@@ -26,12 +26,12 @@ const BreweriesDetails = ()=>{
 
     fetchBrewery()
   }, [])
-  
+
   return(
     <div>
       <h1 className="text-6xl pb-8">{brewery.name}</h1>
       <div id="BreweryDetails" className="grid sm: grid-cols-1 md:grid-cols-2 gap-10 w-100%">
-        <div className="col-span-1 flex justify-center items-center"><BreweriesDetailsItem brewery={brewery}/></div>
+        <div className="col-span-1 flex justify-center items-center">{brewery.id && <BreweriesDetailsItem brewery={brewery}/>}</div>
         <div className="col-span-1">{brewery.id && <BreweryMap brewery={brewery}/>}</div>
       </div>
       <p className="pt-8 text-2xl font-bold"><Link to={`/`} className="hover:text-forest">{"\u2190"} Back to List</Link></p>
