@@ -7,12 +7,8 @@ const useFetchBreweriesList = (breweryParams, breweryPage, setBreweryPage)=>{
     const fetchBreweriesList = async()=>{
       const response = await fetch(url)
       const json = await response.json()
-      if (json.length<1) {
-        setBreweryPage(breweryPage==1 ? breweryPage : breweryPage-1)
-      }
-      else{
-        setBreweries(json)
-      }
+      setBreweries(json)
+      
     }
     fetchBreweriesList()
   }, [breweryParams, breweryPage])

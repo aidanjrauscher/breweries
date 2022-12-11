@@ -17,7 +17,9 @@ const BreweriesList = ()=>{
   const breweries = useFetchBreweriesList(breweryParams, breweryPage, setBreweryPage)
 
   const nextPage = () => {
-    setBreweryPage(breweryPage + 1)
+    if(breweries.length==20){
+      setBreweryPage(breweryPage + 1)
+    }
   }
 
   const prevPage = () => {
