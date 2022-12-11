@@ -26,6 +26,7 @@ const BreweriesDetails = ()=>{
 
     fetchBrewery()
   }, [])
+  
   return(
     <div>
       <h1 className="text-6xl pb-8">{brewery.name}</h1>
