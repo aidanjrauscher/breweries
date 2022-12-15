@@ -1,12 +1,3 @@
-
-import {
-  TextField, 
-  FormGroup, 
-  FormControlLabel,
-  MenuItem,
-  Checkbox
-} from '@mui/material';
-
 const BreweriesListInputs = ({breweryParams, setBreweryParams, setBreweryPage, styles})=>{
   const searchBreweries = (e) =>{
     setBreweryParams({
@@ -106,80 +97,40 @@ const BreweriesListInputs = ({breweryParams, setBreweryParams, setBreweryPage, s
   }
 
   return(
-    <div className="flex justify-center"> 
-      <FormGroup row={true}>  
-        <TextField
-          hiddenLabel
-          id="brewery-search"
-          placeholder="Search Breweries"
-          type="search"
-          variant="filled"
-          value={breweryParams.search}
-          onChange={searchBreweries}
-          sx={{m: 2, 
-            input: {
-              color: '#efe9f4',
-              borderBottom: "2px solid #efe9f4",
-            },
-            '&.MuiTextField-root': {
-                color: '#efe9f4'
-            },
-            '& .MuiFilledInput-underline':{
-              color: "#efe9f4",
-              borderColor: '#efe9f4',
-            },
-          }}
-          
-        />
-        <TextField
-          select
-          id="brewery-type"
-          value={breweryParams.type}
-          label="Brewery Type"
-          onChange={filterBreweryType}
-          sx={{m: 2, width: 160,  
-            '& .MuiSelect-select, .MuiSelect-icon, .MuiOutlinedInput-notchedOutline, .MuiFormLabel-root, .MuiOutlinedInput-notchedOutline': {
-              color: '#efe9f4',
-              borderColor: '#efe9f4'
-            },
-          }}
-        >
+    <div className="flex flex-wrap flex-row justify-center items-end space-x-6 space-y-3"> 
+      <div className="form-control">
+         <label clasName="label">
+          <span className="label-text text-magnolia">Search</span> 
+        </label>
+        <input type="text" placeholder="Brewery Name" onChange={searchBreweries} className="input input-bordered text-magnolia bg-independence border-magnolia" />
+      </div>
+      <div className="form-control">
+        <label clasName="label">
+          <span className="label-text text-magnolia">Brewery Type</span> 
+        </label>
+        <select onChange={filterBreweryType} className="select text-magnolia bg-independence border-magnolia">
           {Object.keys(breweryTypes).map((type)=>(
-            <MenuItem key={breweryTypes[type]} value={breweryTypes[type]}>{type}</MenuItem>
+            <option key={breweryTypes[type]} value={breweryTypes[type]}>{type}</option>
           ))
           }
-        </TextField>
-        <TextField
-          select
-          id="brewery-state"
-          value={breweryParams.state}
-          label="Brewery State"
-          onChange={filterBreweryState}
-          sx={{m: 2, width: 160,
-            '& .MuiSelect-select, .MuiSelect-icon, .MuiOutlinedInput-notchedOutline, .MuiFormLabel-root, .MuiOutlinedInput-notchedOutline': {
-              color: '#efe9f4',
-              borderColor: '#efe9f4'
-            },}}
-          inputProps={{ style: { color: "white" } }}
-        >
+        </select>
+      </div>
+      <div className="form-control">
+        <label clasName="label">
+          <span className="label-text text-magnolia">Brewery State</span> 
+        </label>
+        <select onChange={filterBreweryState} className="select text-magnolia bg-independence border-magnolia">
           {Object.keys(states).map((state)=>(
-            <MenuItem key={states[state]} value={states[state]}>{state.replaceAll("_", " ")}</MenuItem>
+            <option key={states[state]} value={states[state]}>{state.replaceAll("_", " ")}</option>
           ))}
-        </TextField>
-        <FormControlLabel control={
-          <Checkbox sx={{
-            color: '#efe9f4',
-            '&.Mui-checked': {
-              color: '#efe9f4',
-            },
-          }} />
-        } 
-        label="Only Show US Breweries" 
-        labelPlacement="start"
-        checked={breweryParams.us_only} 
-        onChange={filterBreweryUSOnly}
-        sx={{m: 2}}/>
-      </FormGroup>  
+        </select>
+      </div>
+      <div className="form-control">
+        <label className="label space-x-3 cursor-pointer">
+          <span className="label-text text-magnolia">Only Show US Breweries</span> 
+          <input type="checkbox" onChange={filterBreweryUSOnly} className="checkbox border-magnolia" />
+        </label>
+      </div>
     </div>
   )
 }
