@@ -3,7 +3,7 @@
 ### Client
 - Front-End Framework: React
 - Development Environment: Vite
-- Component Library: MUI
+- Component Library: DaisyUI
 - Styling: Tailwind CSS
 - Hosting: Vercel
 
